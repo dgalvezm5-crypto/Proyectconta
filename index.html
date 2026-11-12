@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contabilidad Administrativa | Proyecto Final UMG</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --negro:#171717;
+  --gris-oscuro:#3f3f3f;
+  --gris:#777777;
+  --gris-medio:#bdbdbd;
+  --gris-claro:#e8e8e8;
+  --blanco:#ffffff;
+  --fondo:#f5f5f5;
+  --texto:#242424;
+  --tarjeta:#ffffff;
+  --borde:#d7d7d7;
+  --barra:#ededed;
+  --boton:#222222;
+  --boton-hover:#555555;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--fondo);color:var(--texto);line-height:1.7}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;line-height:1.22}
+nav{position:sticky;top:0;z-index:10;background:var(--negro);display:flex;flex-wrap:wrap;gap:6px 18px;padding:13px 5%;box-shadow:0 2px 8px #0002}
+nav a{color:var(--blanco);text-decoration:none;font-weight:600;font-size:.93rem}
+nav a:hover,nav a:focus{color:#d0d0d0;text-decoration:underline}
+header{background:var(--negro);color:var(--blanco);padding:72px 5% 64px;border-bottom:6px solid var(--gris-medio)}
+header h1{font-size:clamp(2.1rem,6vw,3.7rem);margin:0 0 14px;max-width:16ch;color:var(--blanco)}
+header p{max-width:65ch;font-size:1.1rem;margin:0 0 8px;color:#eeeeee}
+header .meta{font-size:.96rem;border-left:4px solid var(--gris-medio);padding-left:14px;margin-top:24px;color:#e2e2e2}
+main{max-width:1050px;margin:0 auto;padding:0 5% 48px}
+section{padding:48px 0 10px}
+h2{font-size:1.9rem;color:var(--negro);margin:0 0 12px;border-bottom:3px solid var(--gris-medio);display:inline-block;padding-bottom:7px}
+h3{color:var(--gris-oscuro)}
+p,li{color:var(--texto)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:20px}
+.card{background:var(--tarjeta);border:1px solid var(--borde);border-top:4px solid var(--gris-oscuro);border-radius:10px;padding:21px;box-shadow:0 3px 12px #0000000a}
+.card h3{margin:0 0 9px;font-size:1.2rem;color:var(--negro)}
+.card ul{padding-left:20px;margin:8px 0 0}
+.scroll{overflow-x:auto;margin-top:20px}
+table{border-collapse:collapse;width:100%;min-width:560px;background:var(--tarjeta)}
+th,td{border:1px solid var(--borde);padding:11px 13px;text-align:left;vertical-align:top}
+th{background:var(--gris-oscuro);color:var(--blanco)}
+tr:nth-child(even) td{background:#f3f3f3}
+.formula{background:#eeeeee;border-left:5px solid var(--negro);padding:12px 16px;margin:14px 0;font-family:Georgia,serif;font-size:1.05rem;overflow-x:auto;color:var(--negro)}
+.calc label{display:block;font-weight:700;margin:11px 0 4px;color:var(--gris-oscuro)}
+.calc input{width:100%;padding:10px;border:1px solid var(--gris-medio);border-radius:6px;font:inherit;background:var(--blanco);color:var(--texto)}
+button{background:var(--boton);color:var(--blanco);border:0;border-radius:6px;padding:11px 20px;font:inherit;font-weight:700;cursor:pointer;margin-top:14px}
+button:hover{background:var(--boton-hover)}
+:focus-visible{outline:3px solid var(--gris);outline-offset:3px}
+.res{margin-top:14px;padding:13px;border-radius:8px;background:#eeeeee;border:1px solid var(--gris-medio);min-height:3em;color:var(--negro)}
+.ok{color:#222;font-weight:700}.no{color:#555;font-weight:700;text-decoration:underline}
+footer{background:var(--negro);color:var(--blanco);text-align:center;padding:30px 5%;border-top:5px solid var(--gris-medio);font-size:.95rem}
+footer p{color:#eeeeee}
+@media(max-width:650px){
+ nav{gap:8px 12px;padding:11px 4%}
+ nav a{font-size:.86rem}
+ header{padding:48px 5%}
+ section{padding-top:35px}
+ h2{font-size:1.55rem}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Navegación principal">
+<a href="#inicio">Inicio</a><a href="#fundamentos">Fundamentos web</a><a href="#teoria">Teoría</a><a href="#herramientas">Herramientas</a><a href="#analisis">Análisis financiero</a><a href="#caso">Caso de estudio</a><a href="#flujo">Flujo de efectivo</a><a href="#areas">Áreas de responsabilidad</a><a href="#demostracion">Demostración práctica</a><a href="#van">Calculadora VAN/TIR</a><a href="#comprar">Comprar o producir</a><a href="#fuentes">Fuentes</a>
+</nav>
+
+<header id="inicio">
+<h1>Contabilidad Administrativa</h1>
+<p>Recurso digital para entender cómo la información contable ayuda a los gerentes a tomar mejores decisiones.</p>
+<p class="meta">Universidad Mariano Gálvez de Guatemala, Campus Quetzaltenango<br>Ingeniería en Sistemas de Información y CC · Contabilidad II<br>Docente: Lic. M.A. Leonel Alfredo Posadas Alonzo<br>Estudiante: Diego José Gálvez Méndez</p>
+</header>
+
+<main>
+
+<section id="fundamentos">
+<h2>Fundamentos de creación web</h2>
+<p>Estas son las decisiones que se tomaron al crear esta página:</p>
+<div class="grid">
+<div class="card"><h3>Diseño y colores</h3><p>Se utiliza una paleta monocromática de blanco, negro y distintos tonos de gris. El contraste entre fondos, títulos y tarjetas facilita la lectura y mantiene una apariencia limpia y profesional.</p></div>
+<div class="card"><h3>Estructura de navegación</h3><p>Un menú fijo en la parte superior permite saltar a cada sección sin perderse. El contenido sigue un orden lógico: teoría, herramientas y práctica.</p></div>
+<div class="card"><h3>Adaptabilidad</h3><p>Usa cuadrículas flexibles y tablas con desplazamiento, por lo que se ve bien en celular, tableta y computadora.</p></div>
+<div class="card"><h3>Tipografía</h3><p>Se utilizan tipografías sencillas y legibles, con títulos destacados y textos claros para facilitar la lectura en pantalla.</p></div>
+</div>
+</section>
+
+<section id="teoria">
+<h2>Contabilidad administrativa: teoría</h2>
+<p>La <strong>contabilidad administrativa</strong> (o de gestión) produce información financiera y no financiera dirigida a los gerentes. Su fin es planificar, controlar y decidir dentro de la organización. No sigue normas obligatorias, porque su único criterio es la utilidad para quien decide.</p>
+<div class="grid">
+<div class="card"><h3>Objetivos</h3><ul><li>Planificar y presupuestar</li><li>Controlar costos y desempeño</li><li>Evaluar alternativas de inversión</li><li>Apoyar la toma de decisiones gerenciales</li></ul></div>
+<div class="card"><h3>Importancia</h3><p>Permite saber qué productos dejan margen, dónde se desperdician recursos y si una inversión conviene antes de realizarla.</p></div>
+</div>
+<div class="scroll">
+<table>
+<caption style="text-align:left;font-weight:600;padding:6px 0">Diferencias entre las tres contabilidades</caption>
+<tr><th>Aspecto</th><th>Financiera</th><th>Administrativa</th><th>De costos</th></tr>
+<tr><td>Usuarios</td><td>Externos: inversionistas, bancos, SAT</td><td>Internos: gerentes y directivos</td><td>Internos y producción</td></tr>
+<tr><td>Normas</td><td>NIIF y leyes obligatorias</td><td>Sin normas obligatorias</td><td>Criterios propios de costeo</td></tr>
+<tr><td>Enfoque</td><td>Pasado (hechos históricos)</td><td>Futuro (proyecciones y decisiones)</td><td>Costo de producir y vender</td></tr>
+<tr><td>Informes</td><td>Estados financieros</td><td>Presupuestos, análisis, indicadores</td><td>Hojas de costos, costo unitario</td></tr>
+<tr><td>Periodicidad</td><td>Periódica (mensual, anual)</td><td>Cuando la gerencia lo necesita</td><td>Por orden o proceso de producción</td></tr>
+</table>
+</div>
+</section>
+
+<section id="herramientas">
+<h2>Herramientas de gestión práctica</h2>
+<div class="grid">
+<div class="card"><h3>Rentabilidad y eficiencia</h3>
+<p>Miden cuánto gana la empresa y qué tan bien usa sus recursos.</p>
+<ul><li><strong>Rentabilidad económica</strong> = BAII ÷ Activo × 100</li><li><strong>Rentabilidad financiera</strong> = Beneficio neto ÷ Patrimonio neto × 100</li><li><strong>Margen</strong> = BAII ÷ Ventas</li><li><strong>Rotación</strong> = Ventas ÷ Activo</li></ul></div>
+<div class="card"><h3>Flujo de efectivo</h3>
+<p>Muestra las entradas y salidas reales de dinero. Una empresa puede tener utilidades y aun así quedarse sin liquidez, por eso se separa en actividades de operación, inversión y financiamiento.</p></div>
+<div class="card"><h3>Análisis patrimonial</h3>
+<p>Estudia la estructura del balance: qué se tiene (activos), qué se debe (pasivos) y qué pertenece a los dueños (patrimonio). Ayuda a medir solvencia y endeudamiento.</p>
+<div class="formula">Activo = Pasivo + Patrimonio</div></div>
+<div class="card"><h3>Comprar o producir</h3>
+<p>Compara los costos relevantes de fabricar internamente contra los de comprar a un proveedor. Solo cuentan los costos que cambian con la decisión, como el costo variable y los fijos evitables.</p></div>
+</div>
+
+<h3 style="margin-top:34px;color:var(--gris-oscuro)">VAN y TIR: proyección financiera</h3>
+<p>El <strong>Valor Actual Neto (VAN)</strong> traslada los flujos futuros a valor de hoy usando una tasa de descuento y les resta la inversión inicial. Si el VAN es positivo, el proyecto crea valor.</p>
+<div class="formula">VAN = −I₀ + Σ [ Fₜ ÷ (1 + r)ᵗ ]</div>
+<p>La <strong>Tasa Interna de Retorno (TIR)</strong> es la tasa que hace el VAN igual a cero. Se acepta el proyecto si la TIR es mayor que la tasa de descuento exigida.</p>
+<div class="formula">0 = −I₀ + Σ [ Fₜ ÷ (1 + TIR)ᵗ ]</div>
+<p><strong>Regla de decisión:</strong> VAN &gt; 0 y TIR &gt; r, se acepta. VAN &lt; 0 y TIR &lt; r, se rechaza.</p>
+<div class="grid">
+<div class="card"><h3>Para qué sirven</h3><p>Antes de invertir en maquinaria, un local o un sistema, la gerencia necesita saber si el proyecto devolverá más de lo que cuesta. Un quetzal de hoy vale más que uno de dentro de un año, así que los flujos futuros se descuentan a valor presente. Eso es lo que hacen el VAN y la TIR.</p></div>
+<div class="card"><h3>Qué necesitas</h3><ul><li><strong>I₀:</strong> la inversión inicial</li><li><strong>Fₜ:</strong> el flujo de efectivo neto de cada año</li><li><strong>r:</strong> la tasa de descuento, es decir, el rendimiento mínimo que exige la empresa</li><li><strong>t:</strong> el número de períodos</li></ul></div>
+<div class="card"><h3>Cómo se calcula el VAN</h3><ul><li>Divide cada flujo entre (1 + r) elevado al año que le toca</li><li>Suma todos los valores presentes</li><li>Réstale la inversión inicial</li><li>Si el resultado es positivo, el proyecto crea valor</li></ul></div>
+</div>
+
+<h3 style="margin-top:34px;color:var(--gris-oscuro)">Ejemplo resuelto</h3>
+<p>Una empresa evalúa una máquina que cuesta <strong>Q100,000</strong>. Espera flujos netos de Q30,000, Q35,000, Q40,000, Q45,000 y Q50,000 en cinco años. Su tasa de descuento es <strong>10 %</strong>.</p>
+<div class="scroll"><table>
+<tr><th>Año</th><th>Flujo (Q)</th><th>Factor 1 ÷ (1,10)ᵗ</th><th>Valor presente (Q)</th></tr>
+<tr><td>1</td><td>30,000</td><td>0,9091</td><td>27,272.73</td></tr>
+<tr><td>2</td><td>35,000</td><td>0,8264</td><td>28,925.62</td></tr>
+<tr><td>3</td><td>40,000</td><td>0,7513</td><td>30,052.59</td></tr>
+<tr><td>4</td><td>45,000</td><td>0,6830</td><td>30,735.61</td></tr>
+<tr><td>5</td><td>50,000</td><td>0,6209</td><td>31,046.07</td></tr>
+<tr><th colspan="3">Suma de valores presentes</th><th>148,032.61</th></tr>
+<tr><th colspan="3">VAN = 148,032.61 − 100,000</th><th>Q48,032.61</th></tr>
+</table></div>
+<p><strong>Lectura del VAN:</strong> es positivo, así que el proyecto devuelve la inversión, rinde el 10 % exigido y además genera Q48,032.61 de valor adicional en valor de hoy. Se acepta.</p>
+<p><strong>Lectura de la TIR:</strong> con los mismos flujos, la TIR es de aproximadamente <strong>25.75 %</strong>. Como es mucho mayor que el 10 % exigido, se confirma la aceptación. La TIR se encuentra por tanteo, probando tasas hasta que el VAN se hace cero. Por eso se calcula con calculadora o con hoja de cálculo (función TIR en Excel).</p>
+
+<div class="grid">
+<div class="card"><h3>Periodo de recuperación</h3><p>Es el tiempo que tarda el proyecto en devolver la inversión. Aquí, a los 2 años se han recuperado Q65,000 y en el año 3 faltan Q35,000 de Q40,000. Se recupera en unos <strong>2.9 años</strong>. No considera el valor del dinero en el tiempo, por eso se usa como apoyo del VAN.</p></div>
+<div class="card"><h3>Ventajas</h3><ul><li>El VAN considera el valor del dinero en el tiempo</li><li>El VAN mide cuánto valor se crea, en quetzales</li><li>La TIR es un porcentaje fácil de comparar con la tasa exigida</li></ul></div>
+<div class="card"><h3>Cuidado con</h3><ul><li>Los resultados dependen de que los flujos proyectados sean realistas</li><li>Elegir mal la tasa de descuento cambia la decisión</li><li>Al comparar proyectos de distinto tamaño, el VAN suele ser el criterio más confiable</li></ul></div>
+</div>
+</section>
+
+<section id="analisis">
+<h2>Análisis financiero y económico</h2>
+<p>El análisis contable reúne técnicas para interpretar el balance y la cuenta de pérdidas y ganancias. Se divide en tres tipos:</p>
+<div class="grid">
+<div class="card"><h3>Patrimonial</h3><p>Estudia la estructura del activo, el pasivo y el patrimonio neto. Puede ser <strong>estático</strong> (un momento dado) o <strong>dinámico</strong> (evolución entre años). Usa porcentajes (análisis vertical), variaciones absolutas y relativas (análisis horizontal) y gráficos.</p></div>
+<div class="card"><h3>Financiero</h3><p>Mide la <strong>liquidez</strong> (pagar deudas a corto plazo) y la <strong>solvencia</strong> (pagar todas las deudas). Se apoya en el fondo de maniobra, las situaciones financieras y los ratios.</p></div>
+<div class="card"><h3>Económico</h3><p>Estudia la cuenta de resultados para conocer la rentabilidad. Recuerda que <strong>beneficio</strong> es una cantidad de dinero y <strong>rentabilidad</strong> es un porcentaje sobre lo invertido.</p></div>
+</div>
+
+<h3 style="margin-top:34px;color:var(--gris-oscuro)">Fondo de maniobra</h3>
+<p>Es el colchón de seguridad que permite seguir operando a corto plazo, porque cobros y pagos no siempre coinciden. Se calcula de dos formas equivalentes:</p>
+<div class="formula">FM = Activo corriente − Pasivo corriente</div>
+<div class="formula">FM = Patrimonio neto + Pasivo no corriente − Activo no corriente</div>
+<p>Si FM &gt; 0 hay equilibrio financiero. Si FM &lt; 0 hay riesgo de suspensión de pagos.</p>
+
+<h3 style="margin-top:34px;color:var(--gris-oscuro)">Situaciones financieras</h3>
+<div class="scroll"><table>
+<tr><th>Situación</th><th>Causa</th><th>Consecuencia</th><th>Medida correctora</th></tr>
+<tr><td>Equilibrio total</td><td>Pasivo = 0 (A = PN)</td><td>Fondos posiblemente insuficientes para invertir</td><td>Aceptar cierto endeudamiento</td></tr>
+<tr><td>Equilibrio normal</td><td>FM &gt; 0</td><td>Sin problema para pagar deudas</td><td>Vigilar que el FM sea adecuado</td></tr>
+<tr><td>Desequilibrio a corto plazo</td><td>FM &lt; 0</td><td>Problemas de liquidez, riesgo de suspensión de pagos</td><td>Renegociar plazos con proveedores</td></tr>
+<tr><td>Desequilibrio a largo plazo</td><td>PN = 0 (A = P)</td><td>Problemas de solvencia, riesgo de quiebra</td><td>Aumentar el capital o desaparecer</td></tr>
+</table></div>
+
+<h3 style="margin-top:34px;color:var(--gris-oscuro)">Ratios financieros</h3>
+<div class="scroll"><table>
+<tr><th>Ratio</th><th>Fórmula</th><th>Óptimo</th></tr>
+<tr><td>Liquidez</td><td>Activo corriente ÷ Pasivo corriente</td><td>1,5 a 2</td></tr>
+<tr><td>Tesorería</td><td>(Realizable + Disponible) ÷ Pasivo corriente</td><td>0,8 a 1,2</td></tr>
+<tr><td>Disponibilidad</td><td>Disponible ÷ Pasivo corriente</td><td>0,2 a 0,3</td></tr>
+<tr><td>Garantía o solvencia</td><td>Activo ÷ Pasivo</td><td>1,5 a 2</td></tr>
+<tr><td>Endeudamiento</td><td>Pasivo ÷ (Patrimonio neto + Pasivo)</td><td>0,4 a 0,6</td></tr>
+<tr><td>Calidad de la deuda</td><td>Pasivo corriente ÷ Pasivo</td><td>0,2 a 0,5</td></tr>
+</table></div>
+<p>Un ratio por debajo del óptimo indica escasez (de liquidez o de solvencia). Por encima indica exceso, y la empresa podría invertir ese excedente para ganar rentabilidad.</p>
+
+<div class="card calc" style="margin-top:20px">
+<h3 style="margin-top:0;color:var(--negro)">Calculadora de ratios</h3>
+<label for="ex">Existencias (Q)</label><input id="ex" type="number" value="40000">
+<label for="re">Realizable (Q)</label><input id="re" type="number" value="50000">
+<label for="di">Disponible (Q)</label><input id="di" type="number" value="20000">
+<label for="anc">Activo no corriente (Q)</label><input id="anc" type="number" value="150000">
+<label for="pn">Patrimonio neto (Q)</label><input id="pn" type="number" value="150000">
+<label for="pnc">Pasivo no corriente (Q)</label><input id="pnc" type="number" value="50000">
+<label for="pc_ratio">Pasivo corriente (Q)</label><input id="pc_ratio" type="number" value="60000">
+<button onclick="calcRat()">Calcular ratios</button>
+<div class="res" id="resRat" aria-live="polite">Ingresa los datos y presiona el botón.</div>
+</div>
+
+<h3 style="margin-top:34px;color:var(--gris-oscuro)">Ejemplo práctico: balance y análisis financiero</h3>
+<p>Ejercicio resuelto en clase con cifras en euros. El balance cuadra: Activo 361.000 = Patrimonio neto 162.000 + Pasivo 199.000.</p>
+<div class="scroll"><table>
+<tr><th>Activo</th><th>Monto</th><th>Patrimonio neto y pasivo</th><th>Monto</th></tr>
+<tr><td>Activo no corriente</td><td>274.000</td><td>Patrimonio neto</td><td>162.000</td></tr>
+<tr><td>Activo corriente</td><td>87.000</td><td>Pasivo no corriente</td><td>90.000</td></tr>
+<tr><td>· Existencias</td><td>48.000</td><td>Pasivo corriente</td><td>109.000</td></tr>
+<tr><td>· Realizable (clientes, deudores, créditos)</td><td>34.000</td><td></td><td></td></tr>
+<tr><td>· Disponible (caja)</td><td>5.000</td><td></td><td></td></tr>
+<tr><th>Total activo</th><th>361.000</th><th>Total PN y pasivo</th><th>361.000</th></tr>
+</table></div>
+<p><strong>Fondo de maniobra:</strong> 87.000 − 109.000 = <strong>−22.000</strong>. Es negativo, así que la empresa tiene riesgo de problemas para pagar a corto plazo. No está quebrada, porque sus activos superan sus deudas.</p>
+<div class="scroll"><table>
+<tr><th>Ratio</th><th>Cálculo</th><th>Resultado</th><th>Óptimo</th><th>Lectura</th></tr>
+<tr><td>Liquidez</td><td>87.000 ÷ 109.000</td><td>0,80</td><td>1,5 a 2</td><td>Escasez de liquidez</td></tr>
+<tr><td>Tesorería</td><td>(34.000 + 5.000) ÷ 109.000</td><td>0,36</td><td>0,8 a 1,2</td><td>Escasez de liquidez inmediata</td></tr>
+<tr><td>Disponibilidad</td><td>5.000 ÷ 109.000</td><td>0,05</td><td>0,2 a 0,3</td><td>Muy poco dinero en caja</td></tr>
+<tr><td>Garantía</td><td>361.000 ÷ 199.000</td><td>1,81</td><td>1,5 a 2</td><td>Solvencia en el óptimo</td></tr>
+<tr><td>Endeudamiento</td><td>199.000 ÷ 361.000</td><td>0,55</td><td>0,4 a 0,6</td><td>En el óptimo, cerca del límite</td></tr>
+<tr><td>Calidad de la deuda</td><td>109.000 ÷ 199.000</td><td>0,55</td><td>0,2 a 0,5</td><td>Mala: mucha deuda a corto plazo</td></tr>
+</table></div>
+<p><strong>Conclusión:</strong> la empresa es solvente, pero tiene un problema de liquidez. Una solución es pasar deudas de corto a largo plazo o aumentar el capital. Esta situación corresponde a un desequilibrio financiero a corto plazo.</p>
+
+<h3 style="margin-top:34px;color:var(--gris-oscuro)">Análisis económico: rentabilidad</h3>
+<div class="formula">BAII = Ingresos de explotación − Gastos de explotación</div>
+<div class="formula">BAI = BAII + Resultado financiero · Beneficio neto = BAI − Impuesto</div>
+<div class="grid">
+<div class="card"><h3>Rentabilidad económica (RE)</h3><p>Mide el rendimiento del activo.</p><div class="formula">RE = BAII ÷ Activo × 100</div><p>Se desagrega en <strong>margen</strong> (BAII ÷ Ventas) por <strong>rotación</strong> (Ventas ÷ Activo). Sube si suben los precios, bajan los costos por unidad o aumentan las ventas con el mismo activo.</p></div>
+<div class="card"><h3>Rentabilidad financiera (RF)</h3><p>Es la rentabilidad para los accionistas.</p><div class="formula">RF = Beneficio neto ÷ Patrimonio neto × 100</div><p>Se desagrega en margen × rotación × <strong>apalancamiento</strong> (Activo ÷ Patrimonio neto).</p></div>
+<div class="card"><h3>Efecto apalancamiento</h3><p>Usar deudas para invertir más. Primero se calcula el costo de la deuda:</p><div class="formula">CFA = Gastos financieros ÷ Pasivo</div><p><strong>Positivo:</strong> si RE &gt; CFA, endeudarse sube la RF. <strong>Negativo:</strong> si RE &lt; CFA, la RF baja.</p></div>
+</div>
+</section>
+
+<section id="caso">
+<h2>Caso de estudio: fondo de maniobra negativo</h2>
+<p>En el caso visto en clase, el Barcelona y el Real Madrid tenían fondo de maniobra negativo: −602 millones de euros el Barça y −112 millones el Madrid. Esto significa que sus activos corrientes eran menores que sus deudas a corto plazo. Además, el Barça debía 323 millones por fichajes (más de 126 vencían pronto) y el Madrid debía 204 millones a jugadores (128 vencían pronto).</p>
+<div class="grid">
+<div class="card"><h3>¿Es preocupante?</h3><p>Sí, sobre todo en el Barça, donde la presión de liquidez es mucho mayor. Los ingresos cayeron (derechos televisivos, taquilla y patrocinios) mientras los gastos fijos, como los sueldos, seguían altos. Aun así no es una quiebra: los clubes tienen activos de gran valor e ingresos recurrentes, así que el problema es de liquidez y no de falta de patrimonio.</p></div>
+<div class="card"><h3>Posibles soluciones</h3><ul><li>Renegociar la deuda: pasar deuda de corto a largo plazo</li><li>Reducir gastos, como los sueldos</li><li>Aumentar ingresos con patrocinios y derechos comerciales</li><li>Vender activos o jugadores no indispensables</li><li>Aportes de capital o financiamiento a largo plazo</li></ul></div>
+</div>
+
+<h3 style="margin-top:34px;color:var(--gris-oscuro)">Suspensión de pagos y quiebra</h3>
+<div class="scroll"><table>
+<tr><th>Aspecto</th><th>Suspensión de pagos</th><th>Quiebra</th></tr>
+<tr><td>Situación</td><td>Los activos cubren las deudas, pero no son lo bastante líquidos para pagar las que vencen</td><td>No puede cumplir normalmente sus obligaciones; los activos no alcanzan o solo disolviendo la empresa podría pagar</td></tr>
+<tr><td>Duración</td><td>Temporal</td><td>Definitiva</td></tr>
+<tr><td>La empresa</td><td>Puede seguir funcionando</td><td>Normalmente debe disolverse</td></tr>
+<tr><td>Ejemplo</td><td>Una empresa rentable que se atrasa porque un cliente le paga tarde</td><td>Una fábrica que solo puede pagar vendiendo sus máquinas y su terreno, o que paga deudas con nuevos créditos que no podrá pagar</td></tr>
+</table></div>
+<p>Tras un procedimiento judicial, que varía según el país, hay dos caminos para resolver una suspensión de pagos:</p>
+<div class="grid">
+<div class="card"><h3>Liquidación de activos</h3><p>Es la salida más drástica: se venden bienes para pagar a los acreedores. Normalmente se intenta que la empresa siga funcionando para que todos terminen cobrando.</p></div>
+<div class="card"><h3>Acuerdos con acreedores</h3><p>Se llaman acuerdos de <strong>quita y espera</strong>. La <em>quita</em> reduce el monto de la deuda y la <em>espera</em> retrasa los vencimientos. Los acreedores suelen aceptar porque prefieren cobrar una parte, o cobrar tarde, antes que no cobrar.</p></div>
+</div>
+</section>
+
+<section id="flujo">
+<h2>Estado de flujo de efectivo</h2>
+<p>Muestra de dónde salió y a dónde se fue el efectivo de la empresa durante un período. Una empresa puede tener utilidades y aun así quedarse sin liquidez, porque el estado de resultados registra ingresos y gastos, mientras que este estado registra los cobros y pagos reales.</p>
+<div class="grid">
+<div class="card"><h3>Actividades de operación</h3><p>Son las del giro del negocio.</p><ul><li>Entradas: cobros a clientes</li><li>Salidas: pagos a proveedores, sueldos, impuestos e intereses</li></ul></div>
+<div class="card"><h3>Actividades de inversión</h3><p>Compra y venta de activos a largo plazo.</p><ul><li>Entradas: venta de maquinaria o vehículos</li><li>Salidas: compra de maquinaria, equipo o inversiones</li></ul></div>
+<div class="card"><h3>Actividades de financiamiento</h3><p>Cambios en el capital y en los préstamos.</p><ul><li>Entradas: préstamos recibidos, aportes de los socios</li><li>Salidas: pago de préstamos, dividendos</li></ul></div>
+</div>
+<div class="formula">Flujo neto = Flujo de operación + Flujo de inversión + Flujo de financiamiento</div>
+<div class="formula">Efectivo final = Efectivo inicial + Flujo neto</div>
+<p>Hay dos métodos para calcular el flujo de operación. El <strong>método directo</strong> presenta los cobros y pagos principales. El <strong>método indirecto</strong> parte de la utilidad neta y la ajusta por partidas que no mueven efectivo (como la depreciación) y por los cambios en el capital de trabajo.</p>
+<div class="scroll"><table>
+<caption style="text-align:left;font-weight:600;padding:6px 0">Ejemplo ilustrativo (cifras en quetzales)</caption>
+<tr><th>Concepto</th><th>Monto</th></tr>
+<tr><td>Flujo de operación</td><td>+45,000</td></tr>
+<tr><td>Flujo de inversión (compra de maquinaria)</td><td>−30,000</td></tr>
+<tr><td>Flujo de financiamiento (préstamo recibido)</td><td>+10,000</td></tr>
+<tr><th>Flujo neto del período</th><th>+25,000</th></tr>
+<tr><td>Efectivo al inicio</td><td>12,000</td></tr>
+<tr><th>Efectivo al final</th><th>37,000</th></tr>
+</table></div>
+<p>Lectura: la empresa generó efectivo con su operación, invirtió en maquinaria y se apoyó en un préstamo. Terminó el período con más efectivo del que tenía.</p>
+</section>
+
+<section id="areas">
+<h2>Contabilidad por áreas de responsabilidad</h2>
+<p>Este sistema identifica los gastos, costos e ingresos con los ejecutivos responsables de ellos, para localizar rápido dónde están los problemas y quién responde por ellos. Permite <strong>administrar por excepción</strong>: la gerencia atiende solo las desviaciones y no cada operación.</p>
+<div class="grid">
+<div class="card"><h3>Cuatro niveles de control</h3><ul><li>Gerente general: responde por la utilidad ante el directorio</li><li>Gerentes de división (compras, producción, ventas, finanzas)</li><li>Jefes de departamento</li><li>Supervisores de sección</li></ul></div>
+<div class="card"><h3>Requisitos</h3><ul><li>Un organigrama con funciones y responsabilidades claras</li><li>Un plan de cuentas alineado al organigrama</li><li>Presupuestos realistas, elaborados de abajo hacia arriba</li><li>Costos estándar para medir la eficiencia en producción</li></ul></div>
+<div class="card"><h3>Cómo funciona</h3><p>Se comparan los datos reales con presupuestos y costos estándar. Las variaciones (en precio y cantidad de materiales, y en tiempo y tipo de mano de obra) señalan el departamento y el responsable. Los informes llegan a cada responsable con información sencilla y oportuna.</p></div>
+</div>
+</section>
+
+<section id="demostracion">
+<h2>Demostración práctica: cómo utilizar las herramientas</h2>
+<p>Esta sección sirve como guía para comprobar cómo la información contable se convierte en decisiones. Cada calculadora permite modificar los datos y observar cómo cambia el resultado.</p>
+<div class="grid">
+<div class="card">
+<h3>1. Analizar la situación financiera</h3>
+<p>En la calculadora de ratios, ingresa las existencias, el realizable, el disponible, el activo no corriente, el patrimonio neto y los pasivos.</p>
+<ul>
+<li>Presiona <strong>Calcular ratios</strong>.</li>
+<li>Revisa el fondo de maniobra y los indicadores de liquidez, tesorería y disponibilidad.</li>
+<li>Compara cada resultado con su rango de referencia.</li>
+</ul>
+<p><strong>¿Qué decisión apoya?</strong> Permite identificar si la empresa necesita mejorar su efectivo, renegociar deudas o fortalecer su capital.</p>
+</div>
+<div class="card">
+<h3>2. Evaluar una inversión</h3>
+<p>En la calculadora VAN/TIR, coloca la inversión inicial, la tasa de descuento y los flujos netos que se esperan recibir cada año.</p>
+<ul>
+<li>Separa los flujos con comas.</li>
+<li>Presiona <strong>Calcular VAN y TIR</strong>.</li>
+<li>Comprueba si el VAN es positivo y si la TIR supera la tasa exigida.</li>
+</ul>
+<p><strong>¿Qué decisión apoya?</strong> Ayuda a decidir si conviene invertir en maquinaria, equipo, un local o un proyecto.</p>
+</div>
+<div class="card">
+<h3>3. Comparar comprar o producir</h3>
+<p>Ingresa las unidades requeridas, el precio de compra por unidad, el costo variable de producir y los costos fijos evitables.</p>
+<ul>
+<li>Presiona <strong>Comparar</strong>.</li>
+<li>Observa el costo total de cada alternativa.</li>
+<li>Identifica cuál opción representa un menor costo anual.</li>
+</ul>
+<p><strong>¿Qué decisión apoya?</strong> Permite elegir entre fabricar internamente o comprar a un proveedor, considerando los costos relevantes.</p>
+</div>
+</div>
+<div class="card" style="margin-top:20px">
+<h3>Ejemplo de cómo presentar los resultados</h3>
+<p>Al explicar una calculadora, no basta con mencionar el número que aparece. Se debe interpretar qué significa y qué acción podría tomar la gerencia.</p>
+<div class="formula">Dato ingresado → Resultado calculado → Interpretación → Decisión administrativa</div>
+<p>Por ejemplo: si el fondo de maniobra es negativo, la empresa puede tener dificultades para pagar a corto plazo. La gerencia podría negociar plazos más largos con sus proveedores o buscar mejorar su capital de trabajo.</p>
+</div>
+</section>
+
+<section id="van">
+<h2>Calculadora de VAN y TIR</h2>
+<div class="card calc">
+<p style="margin-top:0">Los datos de inicio son los del ejemplo resuelto. Cámbialos para probar otros proyectos.</p>
+<label for="inv">Inversión inicial (Q)</label><input id="inv" type="number" value="100000">
+<label for="tasa">Tasa de descuento anual (%)</label><input id="tasa" type="number" value="10">
+<label for="flujos">Flujos netos anuales (Q), separados por coma</label><input id="flujos" type="text" value="30000, 35000, 40000, 45000, 50000">
+<button onclick="calcVAN()">Calcular VAN y TIR</button>
+<div class="res" id="resVAN" aria-live="polite">Ingresa los datos y presiona el botón.</div>
+</div>
+</section>
+
+<section id="comprar">
+<h2>Calculadora: comprar o producir</h2>
+<div class="card calc">
+<label for="u">Unidades requeridas al año</label><input id="u" type="number" value="10000">
+<label for="pc_compra">Precio de compra por unidad (Q)</label><input id="pc_compra" type="number" value="25">
+<label for="cv">Costo variable de producir por unidad (Q)</label><input id="cv" type="number" value="18">
+<label for="cf">Costos fijos evitables si se compra (Q)</label><input id="cf" type="number" value="50000">
+<button onclick="calcCP()">Comparar</button>
+<div class="res" id="resCP" aria-live="polite">Ingresa los datos y presiona el botón.</div>
+</div>
+</section>
+
+<section id="fuentes">
+<h2>Fuentes consultadas</h2>
+<ul>
+<li>Material compartido durante el curso de Contabilidad II, UMG.</li>
+<li>Econosublime. <em>Análisis financiero y económico.</em> Material de las semanas 16 a 18, Contabilidad II, UMG.</li>
+<li>Polar Falcón, E. «Contabilidad por áreas de responsabilidad». <em>Quipukamayoc</em>, Universidad Nacional Mayor de San Marcos.</li>
+<li>Horngren, C., Datar, S. y Rajan, M. <em>Contabilidad de costos: un enfoque gerencial.</em> Pearson.</li>
+<li>Garrison, R., Noreen, E. y Brewer, P. <em>Contabilidad administrativa.</em> McGraw-Hill.</li>
+</ul>
+</section>
+
+</main>
+
+<footer>
+<p>Proyecto final individual · Contabilidad II · Sección 009-A<br>Elaborado por Diego José Gálvez Méndez · Universidad Mariano Gálvez de Guatemala</p>
+</footer>
+
+<script>
+function fmt(n){return 'Q'+n.toLocaleString('es-GT',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function calcVAN(){
+ var I=parseFloat(document.getElementById('inv').value),
+ r=parseFloat(document.getElementById('tasa').value)/100,
+ F=document.getElementById('flujos').value.split(',').map(function(x){return parseFloat(x)}).filter(function(x){return !isNaN(x)}),
+ out=document.getElementById('resVAN');
+ if(isNaN(I)||isNaN(r)||!F.length){out.innerHTML='<span class="no">Revisa los datos: todos los campos deben tener números.</span>';return}
+ function van(t){return F.reduce(function(a,f,i){return a+f/Math.pow(1+t,i+1)},-I)}
+ var v=van(r),tir=null,lo=-0.99,hi=10;
+ if(van(lo)*van(hi)<0){for(var k=0;k<200;k++){var m=(lo+hi)/2;if(van(lo)*van(m)<=0)hi=m;else lo=m}tir=(lo+hi)/2}
+ var ok=v>0;
+ out.innerHTML='<p><strong>VAN:</strong> '+fmt(v)+'</p><p><strong>TIR:</strong> '+(tir===null?'no se puede calcular':(tir*100).toFixed(2)+' %')+'</p><p class="'+(ok?'ok':'no')+'">'+(ok?'El proyecto se acepta: crea valor.':'El proyecto se rechaza: no cubre la tasa exigida.')+'</p>';
+}
+function calcRat(){
+ var g=function(i){return parseFloat(document.getElementById(i).value)||0},
+ ex=g('ex'),re=g('re'),di=g('di'),anc=g('anc'),pn=g('pn'),pnc=g('pnc'),pc=g('pc_ratio'),
+ ac=ex+re+di,A=ac+anc,P=pnc+pc,out=document.getElementById('resRat');
+ if(pc<=0||P<=0){out.innerHTML='<span class="no">El pasivo corriente y el pasivo total deben ser mayores que cero.</span>';return}
+ var fm=ac-pc,rows=[['Liquidez',ac/pc,1.5,2],['Tesorería',(re+di)/pc,0.8,1.2],['Disponibilidad',di/pc,0.2,0.3],['Garantía',A/P,1.5,2],['Endeudamiento',P/(pn+P),0.4,0.6],['Calidad de la deuda',pc/P,0.2,0.5]],
+ h='<p><strong>Fondo de maniobra:</strong> '+fmt(fm)+' <span class="'+(fm>0?'ok':'no')+'">'+(fm>0?'(equilibrio financiero)':'(riesgo de suspensión de pagos)')+'</span></p>';
+ if(Math.abs(A-(pn+P))>0.01)h+='<p class="no">Aviso: el activo ('+fmt(A)+') no es igual a patrimonio + pasivo ('+fmt(pn+P)+').</p>';
+ rows.forEach(function(r){var v=r[1],t=v<r[2]?'por debajo del óptimo':(v>r[3]?'por encima del óptimo':'en el óptimo');h+='<p>'+r[0]+': <strong>'+v.toFixed(2)+'</strong> (óptimo '+r[2]+' a '+r[3]+'): <span class="'+(t=='en el óptimo'?'ok':'no')+'">'+t+'</span></p>'});
+ out.innerHTML=h;
+}
+function calcCP(){
+ var u=+document.getElementById('u').value,pc=+document.getElementById('pc_compra').value,cv=+document.getElementById('cv').value,cf=+document.getElementById('cf').value,out=document.getElementById('resCP');
+ if(!(u>0)){out.innerHTML='<span class="no">Ingresa las unidades requeridas.</span>';return}
+ var prod=u*cv+cf,comp=u*pc,dif=Math.abs(prod-comp);
+ out.innerHTML='<p><strong>Costo de producir:</strong> '+fmt(prod)+'</p><p><strong>Costo de comprar:</strong> '+fmt(comp)+'</p><p class="'+(prod<=comp?'ok':'no')+'">'+(prod<=comp?'Conviene producir: ahorra ':'Conviene comprar: ahorra ')+fmt(dif)+' al año.</p>';
+}
+</script>
+</body>
+</html>
